@@ -1,0 +1,13 @@
+Flask
+Flask-Cors
+Flask-OAuthlib
+Flask-SQLAlchemy
+Flask-Testing
+Jinja2
+MarkupSafe
+oauthlib
+oursql
+PyYAML
+requests
+requests-oauthlib
+SQLAlchemy

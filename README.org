@@ -1,0 +1,21 @@
+#+title:  README
+
+* How to build
+
+From this directory, run 
+
+#+BEGIN_EXAMPLE
+make -k all
+#+END_EXAMPLE
+
+This will create a directory called =build= with =code= and
+=docs=.  You know this stuff.
+
+* Where is the question paper?
+
+It's sitting in [[./src/index.org]].  Once you build it, it will
+you can find it at [[./build/docs/index.html]].
+
+
+Good Luck!
+
