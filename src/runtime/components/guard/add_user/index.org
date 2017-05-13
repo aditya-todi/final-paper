@@ -78,8 +78,10 @@ i.e. satisfies the predicate =AddUserInstr.is_inst=.
 #+BEGIN_SRC python :tangle add_user.py
     @staticmethod
     def check_type(instr):
-        # replace pass with your code 
-        pass
+        # replace pass with your code
+        check_pred(AddUserInstr.is_inst)(instr)
+        return instr
+
 #+END_SRC
 
 ** Authorization check
@@ -102,8 +104,13 @@ an exception is to be raised.
 #+BEGIN_SRC python :tangle add_user.py
     @staticmethod
     def check_auth(component, instr):
-        # replace pass with your code 
-        pass
+        # replace pass with your code
+        roles = instr['session'].get("user").get("roles")
+        for role in roles:
+            if role.get("val") == "admin":
+                return instr
+        
+        raise Exception()
 
 #+END_SRC
 
@@ -125,12 +132,14 @@ is raised.
        in the session aggregate managed by the entity manager.
 
 #+BEGIN_SRC python :tangle add_user.py
-
     @staticmethod
     def check_state(component, instr):
+        # replace pass with your code
+        if not component.em.is_present(instr['session']):
+            raise AppException(op="add_user.chec_state",
+                               msg="session is not in the entity manager")
 
-        # replace pass with your code 
-        pass
+        return instr
 
 #+END_SRC
 

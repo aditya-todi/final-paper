@@ -4,6 +4,7 @@
 \#*\#
 .\#*\#
 logs/
+.vscode/
 build/
 elisp/
 org-templates/

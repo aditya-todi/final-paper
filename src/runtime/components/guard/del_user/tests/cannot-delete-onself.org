@@ -34,6 +34,7 @@ class TestCannotDeleteOnself(TestHarness):
     def test_cannot_delete_oneself(self):
         print "test_cannot_delete_oneself"
 
+        self.component.em.delete_session(self.session)
         instr = {'cmd': Cmd.del_user, 
                  'session': self.session, 
                  'data': {'user': self.user}}

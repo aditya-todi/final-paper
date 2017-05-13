@@ -40,7 +40,12 @@ newly created user and 'instr' as the instruction passed.
     @staticmethod 
     def do(obj, instr):
         # replace the next line with your code               
-        pass
+        obj.em.add_user(instr['data']['user'])
+        return {
+            'instr': instr,
+            'result': instr['data']['user']
+        }
+
 
 #+END_SRC
 

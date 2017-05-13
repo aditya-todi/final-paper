@@ -78,8 +78,8 @@ i.e. satisfies predicate =DelUserInstr.is_inst=
     @staticmethod
     def check_type(instr):
         # replace the next line with your code
-        pass
-
+        check_pred(DelUserInstr.is_inst)(instr)
+        return instr
 
 #+END_SRC
 
@@ -116,7 +116,12 @@ constraints:
     @staticmethod
     def check_auth(obj, instr):
         # replace the next line with your code
-        pass
+        roles = instr['session'].get("user").get("roles")
+        for role in roles:
+            if role.get("val") == "admin":
+                return instr
+
+        raise Exception()
 
 #+END_SRC
 
@@ -140,11 +145,14 @@ is raised.
        manager.
 
 #+BEGIN_SRC python :tangle del_user.py
-
     @staticmethod
     def check_state(obj, instr):
         # replace the next line with your code
-        pass
+        if not obj.em.is_present(instr['session']):
+            raise AppException(op="del_user.chec_state",
+                               msg="session is not in the entity manager")
+
+        return instr
 
 #+END_SRC
 

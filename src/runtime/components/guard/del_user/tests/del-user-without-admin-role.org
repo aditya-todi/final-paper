@@ -54,6 +54,31 @@ class TestCheckAuth(TestHarness):
         print "test_check_auth"
 
         # replace the next line with your code
-        self.assertTrue(True)
+        user = User(name=Name(val="user"),
+                    email=Email(val="user@checkauth.org"),
+                    roles=[Role.user])
+
+        d_user = User(name=Name(val="user user"),
+                      email=Email(val="d_user@checkauth.org"),
+                      roles=[Role.user])
+
+        d_key = "somerandomd_userkey"
+        session = Session(user=user, role=Role.user, key=d_key)
+
+        self.component.em.add_user(user)
+        self.component.em.add_user(d_user)
+        self.component.em.add_session(session)
+
+        self.session = session
+        self.user = user
+        self.d_user = d_user
+
+        instr = {'cmd': Cmd.del_user,
+                 'session': self.session,
+                 'data': {'user': self.d_user}}
+
+        guard = self.component
+        with self.assertRaises(Exception):
+            guard.do(instr)
 
 #+END_SRC

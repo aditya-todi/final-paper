@@ -19,7 +19,7 @@ class GenericComponent:
 
     def do(self, spec):
         cmd=spec['cmd']
-        if cmd not in self.method_map.keys():
+        if cmd not in self.method_map.keys() or not spec['session']:
             raise AppException(op=cmd, msg="Unimplemented command")
 
         m = self.method_map[cmd]

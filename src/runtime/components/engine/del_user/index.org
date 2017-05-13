@@ -50,7 +50,11 @@ python value =True= and 'instr' as the instruction passed.
     @staticmethod 
     def do(obj, instr):
         # replace the next line with your code               
-        pass
+        obj.em.delete_user(instr['data']['user'])
+        return {
+            'result': True
+        }
+
 
 #+END_SRC
 
